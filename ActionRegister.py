@@ -22,8 +22,8 @@ my_data_rows = my_cur.fetchall()
 
 streamlit.header("Action/ Issue Register")
 #streamlit.dataframe(my_data_row)
-streamlit.dataframe(my_data_rows,
-                   columns=('PAYLOADTARGETID', 'HUB', 'TRUCKCLASS', 'PAYLOADTARGET', 'VIMS_PAYLOAD'))
+streamlit.dataframe(my_data_rows)
+#                   columns=('PAYLOADTARGETID', 'HUB', 'TRUCKCLASS', 'PAYLOADTARGET', 'VIMS_PAYLOAD'))
 
 # new action variables
 action_date = streamlit.text_input('Action date:')
