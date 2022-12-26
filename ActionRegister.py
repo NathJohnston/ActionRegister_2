@@ -33,3 +33,8 @@ streamlit.dataframe(df)
 
 # new action variables
 action_date = streamlit.text_input('Action date:')
+
+hub = streamlit.text_input('What Hub?')
+truck_class = streamlit.text_input('Enter truck class:')
+target_payload = streamlit.text_input('Enter target payload:')
+vims_payload = streamlit.text_input('Enter vims payload:')
