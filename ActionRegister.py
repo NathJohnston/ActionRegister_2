@@ -43,7 +43,7 @@ streamlit.dataframe(df)
 #action_date = streamlit.text_input('Action date:') # Date picker
 action_date = streamlit.date_input('Action date:')
 streamlit.write('date selected', action_date)
-action_date2 = action_date.strftime("%m/%d/%Y)
+action_date2 = action_date.strftime("%m/%d/%Y")
 
 action = streamlit.text_input('Action details:')
 owner = streamlit.text_input('Action Owner:')
