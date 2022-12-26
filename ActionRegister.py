@@ -21,7 +21,7 @@ my_cur = my_cnx.cursor()
 # ---------------------------------------------------------------------------
 
 
-#my_cur.execute("SELECT * FROM tbl_OperationalActionRegister")
+my_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
 my_cnx.close()
 # don't run anything past here while I troubleshoot
 streamlit.stop()
@@ -52,7 +52,7 @@ Status = streamlit.text_input('Current Status:') # Status dropdown box
 # Allow the end user to add a new record to the action list
 def insert_row_snowflake(hub, truck_class, target_payload, vims_payload):
    with my_cnx.cursor() as my_cur:
-      my_cur.execute("INSERT INTO tbl_OperationalActionRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ Action +"', '"+ Owner +"', '"+ DueDate +"', '"+ Status +"')")
+      my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ Action +"', '"+ Owner +"', '"+ DueDate +"', '"+ Status +"')")
       return "Thanks for adding " + truck_class
 
 
