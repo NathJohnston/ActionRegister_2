@@ -21,7 +21,7 @@ my_cur = my_cnx.cursor()
 # ---------------------------------------------------------------------------
 
 
-my_cur.execute("SELECT * FROM tbl_OperationalActionRegister")
+#my_cur.execute("SELECT * FROM tbl_OperationalActionRegister")
 my_cnx.close()
 # don't run anything past here while I troubleshoot
 streamlit.stop()
