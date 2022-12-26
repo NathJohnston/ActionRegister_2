@@ -50,7 +50,7 @@ def insert_row_snowflake(hub, truck_class, target_payload, vims_payload):
 # don't run anything past here while I troubleshoot
 streamlit.stop()
    
-if streamlit.button('Create new Action')
+if streamlit.button('Create new Action'):
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    back_from_function = insert_row_snowflake(add_my_fruit)
    my_cnx.close()
