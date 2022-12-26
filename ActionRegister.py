@@ -66,3 +66,10 @@ with streamlit.sidebar:
       back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
       my_cnx.close()
       streamlit.text(back_from_function)
+
+#Retrieve list of active action ID's
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+
+my_cur.execute("SELECT Action_ID FROM tbl_OperationalActionsRegister WHERE Status <> 'Complete'")
+my_cnx.close()
