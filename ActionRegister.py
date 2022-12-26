@@ -7,12 +7,6 @@ import snowflake.connector
 #use this for Control of Flow changes - error message handling
 from urllib.error import URLError
 
-[theme]
-primaryColor="#F63366"
-backgroundColor="#FFFFFF"
-secondaryBackgroundColor="#F0F2F6"
-textColor="#262730"
-font="sans serif"
 
 streamlit.title('Actions and Issues Tracker')
 
