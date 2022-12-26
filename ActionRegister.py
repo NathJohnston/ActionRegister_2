@@ -31,7 +31,7 @@ my_cnx.close()
 
 my_data_rows = my_cur.fetchall()
 
-streamlit.header(':blue[Action/ Issue Register]')
+streamlit.header(':blue[Action/ Issue Register] :runner:')
 #streamlit.dataframe(my_data_row)
 
 df = pandas.DataFrame(
