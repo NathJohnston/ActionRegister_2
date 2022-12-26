@@ -28,7 +28,7 @@ my_cnx.close()
 
 my_data_rows = my_cur.fetchall()
 
-streamlit.header(':lower_left_ballpoint_pen::blue[Action/ Issue Register] :runner:')
+streamlit.header(':blue[Action/ Issue Register] :runner:')
 #streamlit.dataframe(my_data_row)
 
 df = pandas.DataFrame(
@@ -40,7 +40,7 @@ streamlit.dataframe(df,width=1200)
 
 # new action variables
 with streamlit.sidebar:
-   streamlit.header(':blue[Enter New Action]')
+   streamlit.header(':lower_left_ballpoint_pen::blue[Enter New Action]')
    #action_date = streamlit.text_input('Action date:') # Date picker
    date_select1 = streamlit.date_input('Action date:')
    action_date = date_select1.strftime("%m/%d/%Y")
