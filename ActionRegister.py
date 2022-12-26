@@ -9,8 +9,7 @@ from urllib.error import URLError
 
 streamlit.title('Actions and Issues Tracker')
 
-# don't run anything past here while I troubleshoot
-streamlit.stop()
+
 
 #test snowflake connection
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
@@ -18,6 +17,9 @@ my_cur = my_cnx.cursor()
 #my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 my_cur.execute("SELECT * FROM tbl_OperationalActionRegister")
 my_cnx.close()
+
+# don't run anything past here while I troubleshoot
+streamlit.stop()
 
 #my_data_row = my_cur.fetchone()
 my_data_rows = my_cur.fetchall()
