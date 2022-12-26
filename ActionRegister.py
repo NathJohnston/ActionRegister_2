@@ -61,9 +61,9 @@ def insert_row_snowflake(action_date, action, owner, due_date, status):
       return "New action added " #+ Action
 
 
-   
-if streamlit.button('Create new Action'):
-   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-   back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
-   my_cnx.close()
-   streamlit.text(back_from_function)
+with streamlit.sidebar:   
+   if streamlit.button('Create new Action'):
+      my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+      back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
+      my_cnx.close()
+      streamlit.text(back_from_function)
