@@ -9,14 +9,11 @@ from urllib.error import URLError
 
 streamlit.title('Actions and Issues Tracker')
 
-#streamlit.header('Breakfast Menu')
-#streamlit.text('🥣 Omega 3 & Blueberry Oatmeal')
-
 #test snowflake connection
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 #my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-my_cur.execute("SELECT * FROM tblTruckPayloadTargets")
+my_cur.execute("SELECT * FROM tbl_OperationalActionRegister")
 my_cnx.close()
 
 #my_data_row = my_cur.fetchone()
@@ -28,23 +25,23 @@ streamlit.header("Action/ Issue Register")
 
 df = pandas.DataFrame(
    my_data_rows,
-   columns=("PAYLOADTARGETID", "HUB", "TRUCKCLASS", "PAYLOADTARGET", "VIMS_PAYLOAD"))
+   columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
 
 streamlit.dataframe(df)
 
 
 # new action variables
-action_date = streamlit.text_input('Action date:')
-hub = streamlit.text_input('What Hub?')
-truck_class = streamlit.text_input('Enter truck class:')
-target_payload = streamlit.text_input('Enter target payload:')
-vims_payload = streamlit.text_input('Enter vims payload:')
+action_date = streamlit.text_input('Action date:') # Date picker
+Action = streamlit.text_input('Action details:')
+Owner = streamlit.text_input('Action Owner:')
+DueDate = streamlit.text_input('Action Due Date:') # Date picker
+Status = streamlit.text_input('Current Status:') # Status dropdown box
 
 # Use a Function and Button to Add new record
 # Allow the end user to add a new record to the action list
 def insert_row_snowflake(hub, truck_class, target_payload, vims_payload):
    with my_cnx.cursor() as my_cur:
-      my_cur.execute("INSERT INTO tblTruckPayloadTargets (HUB, TRUCKCLASS, PAYLOADTARGET, VIMS_PAYLOAD) VALUES ('"+ hub +"', '"+ truck_class +"', '"+ target_payload +"', '"+ vims_payload +"')")
+      my_cur.execute("INSERT INTO tbl_OperationalActionRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ Action +"', '"+ Owner +"', '"+ DueDate +"', '"+ Status +"')")
       return "Thanks for adding " + truck_class
 
 # don't run anything past here while I troubleshoot
@@ -52,6 +49,6 @@ def insert_row_snowflake(hub, truck_class, target_payload, vims_payload):
    
 if streamlit.button('Create new Action'):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-   back_from_function = insert_row_snowflake(hub, truck_class, target_payload, vims_payload)
+   back_from_function = insert_row_snowflake(action_date, Action, Owner, DueDate, Status)
    my_cnx.close()
    streamlit.text(back_from_function)
