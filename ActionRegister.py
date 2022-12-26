@@ -33,11 +33,17 @@ streamlit.dataframe(df)
 
 # new action variables
 action_date = streamlit.text_input('Action date:')
-
 hub = streamlit.text_input('What Hub?')
 truck_class = streamlit.text_input('Enter truck class:')
 target_payload = streamlit.text_input('Enter target payload:')
 vims_payload = streamlit.text_input('Enter vims payload:')
 
+streamlit.button('Get Fruit List')
 
-streamlit.button('Upload data')
+
+# Use a Function and Button to Add new record
+# Allow the end user to add a new record to the action list
+def insert_row_snowflake(hub, truck_class, target_payload, vims_payload):
+   with my_cnx.cursor() as my_cur:
+      my_cur.execute("INSERT INTO tblTruckPayloadTargets VALUES ('"+ hub +"', '"+ truck_class +"', '"+ target_payload +"', '"+ vims_payload +"')")
+      return "Thanks for adding " + truck_class
