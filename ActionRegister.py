@@ -44,8 +44,8 @@ action_date= streamlit.text_input('Action date:') # Date picker
 action = streamlit.text_input('Action details:')
 owner = streamlit.text_input('Action Owner:')
 due_date = streamlit.text_input('Action Due Date:') # Date picker
-status = streamlit.text_input('Current Status:') # Status dropdown box
-status2 = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'))
+#status = streamlit.text_input('Current Status:') # Status dropdown box
+status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'))
 
 # Use a Function and Button to Add new record
 # Allow the end user to add a new record to the action list
