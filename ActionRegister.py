@@ -14,12 +14,18 @@ streamlit.title('Actions and Issues Tracker')
 #test snowflake connection
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
-#my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-my_cur.execute("SELECT * FROM tbl_OperationalActionRegister")
-my_cnx.close()
+# ---- test my connection----------------------------------------------------
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_data_row = my_cur.fetchone()
+streamlit.text(my_data_row)
+# ---------------------------------------------------------------------------
 
 # don't run anything past here while I troubleshoot
 streamlit.stop()
+my_cur.execute("SELECT * FROM tbl_OperationalActionRegister")
+my_cnx.close()
+
+
 
 #my_data_row = my_cur.fetchone()
 my_data_rows = my_cur.fetchall()
