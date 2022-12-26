@@ -40,17 +40,17 @@ streamlit.dataframe(df,width=1200)
 
 # new action variables
 with streamlit.sidebar:
-#action_date = streamlit.text_input('Action date:') # Date picker
+   streamlit.header(':blue[Enter New Action]')
+   #action_date = streamlit.text_input('Action date:') # Date picker
    date_select1 = streamlit.date_input('Action date:')
    action_date = date_select1.strftime("%m/%d/%Y")
-
-action = streamlit.text_input('Action details:')
-owner = streamlit.text_input('Action Owner:')
-#due_date = streamlit.text_input('Action Due Date:') # Date picker
-date_select2 = streamlit.date_input('Action Due Date:')
-due_date = date_select2.strftime("%m/%d/%Y")
-#status = streamlit.text_input('Current Status:') # Status dropdown box
-status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'))
+   action = streamlit.text_input('Action details:')
+   owner = streamlit.text_input('Action Owner:')
+   #due_date = streamlit.text_input('Action Due Date:') # Date picker
+   date_select2 = streamlit.date_input('Action Due Date:')
+   due_date = date_select2.strftime("%m/%d/%Y")
+   #status = streamlit.text_input('Current Status:') # Status dropdown box
+   status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'))
 
 # Use a Function and Button to Add new record
 # Allow the end user to add a new record to the action list
