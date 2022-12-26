@@ -20,6 +20,8 @@ my_cur = my_cnx.cursor()
 #streamlit.text(my_data_row)
 # ---------------------------------------------------------------------------
 
+streamlit.header('This is a header')
+streamlit.header('A header with _italics_ :blue[colors] and emojis :sunglasses:')
 
 my_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
 my_cnx.close()
@@ -36,7 +38,7 @@ df = pandas.DataFrame(
    my_data_rows,
    columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
 
-streamlit.dataframe(df,width=2000)
+streamlit.dataframe(df,width=1200)
 #streamlit.table(df)
 
 # new action variables
