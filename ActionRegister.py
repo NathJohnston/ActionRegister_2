@@ -34,7 +34,6 @@ streamlit.header("Action/ Issue Register")
 
 df = pandas.DataFrame(
    my_data_rows,
-   width(200),
    columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
 
 streamlit.dataframe(df)
