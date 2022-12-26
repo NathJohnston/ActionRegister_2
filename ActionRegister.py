@@ -40,9 +40,8 @@ streamlit.dataframe(df)
 
 
 # new action variables
-action_date = streamlit.text_input('Action date:') # Date picker
-
-action_date2 = streamlit.date_input('Action date:')
+#action_date = streamlit.text_input('Action date:') # Date picker
+action_date = streamlit.date_input('Action date:')
 
 action = streamlit.text_input('Action details:')
 owner = streamlit.text_input('Action Owner:')
