@@ -9,6 +9,9 @@ from urllib.error import URLError
 
 streamlit.title('Actions and Issues Tracker')
 
+# don't run anything past here while I troubleshoot
+streamlit.stop()
+
 #test snowflake connection
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
@@ -44,8 +47,7 @@ def insert_row_snowflake(hub, truck_class, target_payload, vims_payload):
       my_cur.execute("INSERT INTO tbl_OperationalActionRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ Action +"', '"+ Owner +"', '"+ DueDate +"', '"+ Status +"')")
       return "Thanks for adding " + truck_class
 
-# don't run anything past here while I troubleshoot
-#streamlit.stop()
+
    
 if streamlit.button('Create new Action'):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
