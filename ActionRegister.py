@@ -75,4 +75,4 @@ my_id_cur.execute("SELECT Action_ID FROM tbl_OperationalActionsRegister WHERE St
 my_cnx.close()
 
 action_ids = my_id_cur.fetchall()
-select_id = streamlit.selectbox('Select Action ID to Update:',Action_ids)
+select_id = streamlit.selectbox('Select Action ID to Update:',action_ids)
