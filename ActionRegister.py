@@ -1,7 +1,7 @@
 # Import statements
 import streamlit
 import pandas
-
+from datetime import datetime
 import requests
 import snowflake.connector
 #use this for Control of Flow changes - error message handling
@@ -43,6 +43,7 @@ streamlit.dataframe(df)
 #action_date = streamlit.text_input('Action date:') # Date picker
 action_date = streamlit.date_input('Action date:')
 streamlit.write('date selected', action_date)
+action_date2 = action_date.strftime("%m/%d/%Y)
 
 action = streamlit.text_input('Action details:')
 owner = streamlit.text_input('Action Owner:')
@@ -54,8 +55,8 @@ status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed'
 # Allow the end user to add a new record to the action list
 def insert_row_snowflake(action_date, action, owner, due_date, status):
    with my_cnx.cursor() as my_cur:
-      #my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES (to_date('"+ action_date +"','DD/MM/YYYY'), '"+ action +"', '"+ owner +"', to_date('"+ due_date +"','DD/MM/YYYY'), '"+ status +"')")
-      my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', to_date('"+ due_date +"','DD/MM/YYYY'), '"+ status +"')")
+      my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES (to_date('"+ action_date +"','DD/MM/YYYY'), '"+ action +"', '"+ owner +"', to_date('"+ due_date +"','DD/MM/YYYY'), '"+ status +"')")
+      #my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', to_date('"+ due_date +"','DD/MM/YYYY'), '"+ status +"')")
       return "New action added " #+ Action
 
 
