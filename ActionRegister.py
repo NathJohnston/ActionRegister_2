@@ -69,7 +69,10 @@ with streamlit.sidebar:
 
 #Retrieve list of active action ID's
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
+my_ID_cur = my_cnx.cursor()
 
-my_cur.execute("SELECT Action_ID FROM tbl_OperationalActionsRegister WHERE Status <> 'Complete'")
+my_ID_cur.execute("SELECT Action_ID FROM tbl_OperationalActionsRegister WHERE Status <> 'Complete'")
 my_cnx.close()
+
+Action_IDs = my_ID_cur.fetchall()
+#streamlit.selectbox(Action_IDs)
