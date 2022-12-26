@@ -34,10 +34,11 @@ streamlit.header("Action/ Issue Register")
 
 df = pandas.DataFrame(
    my_data_rows,
+   width(200),
    columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
 
-#streamlit.dataframe(df)
-streamlit.table(df)
+streamlit.dataframe(df)
+#streamlit.table(df)
 
 # new action variables
 #action_date = streamlit.text_input('Action date:') # Date picker
