@@ -40,23 +40,23 @@ streamlit.dataframe(df)
 
 
 # new action variables
-act= streamlit.text_input('Action date:') # Date picker
-Action = streamlit.text_input('Action details:')
-Owner = streamlit.text_input('Action Owner:')
-DueDate = streamlit.text_input('Action Due Date:') # Date picker
-Status = streamlit.text_input('Current Status:') # Status dropdown box
+action_date= streamlit.text_input('Action date:') # Date picker
+action = streamlit.text_input('Action details:')
+owner = streamlit.text_input('Action Owner:')
+due_date = streamlit.text_input('Action Due Date:') # Date picker
+status = streamlit.text_input('Current Status:') # Status dropdown box
 
 # Use a Function and Button to Add new record
 # Allow the end user to add a new record to the action list
 def insert_row_snowflake(hub, truck_class, target_payload, vims_payload):
    with my_cnx.cursor() as my_cur:
-      my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ act +"', '"+ Action +"', '"+ Owner +"', '"+ DueDate +"', '"+ Status +"')")
+      my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', '"+ due_date +"', '"+ status +"')")
       return "Thanks for adding " + truck_class
 
 
    
 if streamlit.button('Create new Action'):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-   back_from_function = insert_row_snowflake(act, Action, Owner, DueDate, Status)
+   back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
    my_cnx.close()
    streamlit.text(back_from_function)
