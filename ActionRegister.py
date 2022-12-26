@@ -48,10 +48,10 @@ def insert_row_snowflake(hub, truck_class, target_payload, vims_payload):
       return "Thanks for adding " + truck_class
 
 # don't run anything past here while I troubleshoot
-streamlit.stop()
+#streamlit.stop()
    
 if streamlit.button('Create new Action'):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-   back_from_function = insert_row_snowflake(add_my_fruit)
+   back_from_function = insert_row_snowflake(hub, truck_class, target_payload, vims_payload)
    my_cnx.close()
    streamlit.text(back_from_function)
