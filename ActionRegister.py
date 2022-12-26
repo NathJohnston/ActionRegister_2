@@ -38,7 +38,7 @@ truck_class = streamlit.text_input('Enter truck class:')
 target_payload = streamlit.text_input('Enter target payload:')
 vims_payload = streamlit.text_input('Enter vims payload:')
 
-streamlit.button('Get Fruit List')
+streamlit.button('Create new Action')
 
 
 # Use a Function and Button to Add new record
