@@ -26,7 +26,7 @@ streamlit.header("Action/ Issue Register")
 
 df = pandas.DataFrame(
    my_data_rows,
-   columns=('test', 'test1', 'test2', 'test3', 'test4')
+   columns=("test", "test1", "test2", "test3", "test4"))
 
 streamlit.dataframe(df)
 
