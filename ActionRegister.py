@@ -55,8 +55,8 @@ status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed'
 # Allow the end user to add a new record to the action list
 def insert_row_snowflake(action_date, action, owner, due_date, status):
    with my_cnx.cursor() as my_cur:
-      my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES (to_date('"+ action_date2 +"','DD/MM/YYYY'), '"+ action +"', '"+ owner +"', to_date('"+ due_date +"','DD/MM/YYYY'), '"+ status +"')")
-      #my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', to_date('"+ due_date +"','DD/MM/YYYY'), '"+ status +"')")
+      #my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES (to_date('"+ action_date2 +"','DD/MM/YYYY'), '"+ action +"', '"+ owner +"', to_date('"+ due_date +"','DD/MM/YYYY'), '"+ status +"')")
+      my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date2 +"', '"+ action +"', '"+ owner +"', to_date('"+ due_date +"','DD/MM/YYYY'), '"+ status +"')")
       return "New action added " #+ Action
 
 
