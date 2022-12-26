@@ -75,4 +75,4 @@ my_ID_cur.execute("SELECT Action_ID FROM tbl_OperationalActionsRegister WHERE St
 my_cnx.close()
 
 Action_IDs = my_ID_cur.fetchall()
-#streamlit.selectbox(Action_IDs)
+streamlit.selectbox(Action_IDs)
