@@ -1,6 +1,7 @@
 # Import statements
 import streamlit
 import pandas
+
 import requests
 import snowflake.connector
 #use this for Control of Flow changes - error message handling
@@ -22,8 +23,13 @@ my_data_rows = my_cur.fetchall()
 
 streamlit.header("Action/ Issue Register")
 #streamlit.dataframe(my_data_row)
-streamlit.dataframe(my_data_rows)
-#                   columns=('PAYLOADTARGETID', 'HUB', 'TRUCKCLASS', 'PAYLOADTARGET', 'VIMS_PAYLOAD'))
+
+df = pandas.DataFrame(
+   my_data_rows,
+   columns=('col %d' % i for i in range(5)))
+
+streamlit.dataframe(df)
+
 
 # new action variables
 action_date = streamlit.text_input('Action date:')
