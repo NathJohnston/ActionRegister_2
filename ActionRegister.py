@@ -32,7 +32,7 @@ df = pandas.DataFrame(
    my_data_rows,
    columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
 
-streamlit.dataframe(df,width=1200,height=200)
+streamlit.dataframe(df,width=1500,height=250)
 #streamlit.table(df)
 
 # new action variables
