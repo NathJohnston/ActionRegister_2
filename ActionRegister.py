@@ -131,22 +131,6 @@ if streamlit.button('Update Action'):
    streamlit.success('Action ID: ' + str(back_from_function) + ' Update Succeded')
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    
-   my_dataframe_cur = my_cnx.cursor()
-
-      #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
-   my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
-   my_cnx.close()
-
-      #Populate my_data_rows variable with cursor results
-   my_data_rows = my_dataframe_cur.fetchall()
-
-      #Create action table header
-   streamlit.header(':blue[Action/ Issue Register] :runner:')
-
-      #Populate dataframe
-   df = pandas.DataFrame(
-      my_data_rows,
-      columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
  
 
 
