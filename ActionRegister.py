@@ -78,6 +78,14 @@ action_ids = my_id_cur.fetchall()
 final_result = [i[0] for i in action_ids]
 select_id = streamlit.selectbox('Select Action ID:',final_result)
 
+   #Function to update record based on select box selected id
+   #Allow the end user to add a new record to the action list
+#def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status):   
+#   with my_cnx.cursor() as my_cur:
+#      my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ ud_action +"', Owner = '"+ ud_owner +"', DueDate = '"+ ud_due_date +"', Status = '"+ ud_status +"' WHERE Action_ID = 3")
+      #my_cnx.close()
+#   return "Action ID ... Updated " #+ Action
+
    #Update record for action ID selected in the selected_id selectbox
 if streamlit.button('Update Action'):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
@@ -88,11 +96,7 @@ if streamlit.button('Update Action'):
  
 
 
-def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status):   
-   with my_cnx.cursor() as my_cur:
-      my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ ud_action +"', Owner = '"+ ud_owner +"', DueDate = '"+ ud_due_date +"', Status = '"+ ud_status +"' WHERE Action_ID = 3")
-      #my_cnx.close()
-   return "Action ID ... Updated " #+ Action
+
 
 
 # don't run anything past here while I troubleshoot
