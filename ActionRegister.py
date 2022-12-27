@@ -94,7 +94,7 @@ if streamlit.button('Update Action'):
    #update_response = update_selected_action(action, owner, due_date, status)
    my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ action +"', Owner = '"+ owner +"', DueDate = '"+ due_date +"', Status = '"+ status +"' WHERE Action_ID = 3")
    my_cnx.close()
-   #streamlit.text(update_response)
+   streamlit.text('update succeded')
  
 
 
