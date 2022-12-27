@@ -95,7 +95,12 @@ my_cnx.close()
 
 updateAction = action_to_update_cur.fetchmany()
 col1,col2,col3 = streamlit.columns(3)
+
 with col1:
+   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+   my_id_cur = my_cnx.cursor()
+   my_id_cur.execute("SELECT Action_ID FROM tbl_OperationalActionsRegister WHERE Status <> 'Complete'")
+   my_cnx.close()
    action_ids = my_id_cur.fetchall()
    final_result = [i[0] for i in action_ids]
    select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
