@@ -82,7 +82,8 @@ my_cnx.close()
 #select_id = streamlit.selectbox('Select Action ID to Update:',action_ids)
 
 streamlit.subheader('Update existing Action')
-if action_ids = my_id_cur.fetchall(): 
+try:
+   action_ids = my_id_cur.fetchall(): 
    final_result = [i[0] for i in action_ids]
    select_id = streamlit.selectbox('Select Action ID:',final_result)
                                                                          
