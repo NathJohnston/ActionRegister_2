@@ -7,7 +7,7 @@ import snowflake.connector
 #use this for Control of Flow changes - error message handling
 from urllib.error import URLError
 
-# -------------------------------------FUNCTIONS--------------------------------------
+# -------------------------------------FUNCTIONS-------------------------------------------------------------------------
    #Use a Function and Button to Add new record
    #Allow the end user to add a new record to the action list
 def insert_row_snowflake(action_date, action, owner, due_date, status):
@@ -25,7 +25,7 @@ def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status):
       my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ ud_action +"', Owner = '"+ ud_owner +"', DueDate = '"+ ud_due_date +"', Status = '"+ ud_status +"' WHERE Action_ID = "+ str(select_id) +"")
       my_cnx.close()
    return str(select_id)
-# ---------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------------------
 
 
 #set page layout
@@ -75,7 +75,8 @@ with streamlit.sidebar:
    if streamlit.button('Create new Action'):
       back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
       streamlit.success(back_from_function)
-
+      
+# Row B -----------------------------------------------------------------------------------------------------------------
       #Create update action header
 streamlit.subheader(':orange[Update existing Active Action - Select Action ID]')      
 
@@ -85,12 +86,15 @@ my_id_cur = my_cnx.cursor()
 my_id_cur.execute("SELECT Action_ID FROM tbl_OperationalActionsRegister WHERE Status <> 'Complete'")
 my_cnx.close()
 
+c1, c2 = streamlit.columns((3,7))
    #format the results in the cursor and populate the select box object
-action_ids = my_id_cur.fetchall() 
-final_result = [i[0] for i in action_ids]
-select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
-#select_id = streamlit.selectbox(:blue[Select Action ID:],('Email', 'Home phone', 'Mobile phone')) -- does not work
+   with c1:
+      action_ids = my_id_cur.fetchall() 
+      final_result = [i[0] for i in action_ids]
+      select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
+      #select_id = streamlit.selectbox(:blue[Select Action ID:],('Email', 'Home phone', 'Mobile phone')) -- does not work
 
+# Row C -----------------------------------------------------------------------------------------------------------------
    #Retrieve Action based on selected action ID
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 action_to_update_cur = my_cnx.cursor()
