@@ -74,5 +74,9 @@ my_id_cur = my_cnx.cursor()
 my_id_cur.execute("SELECT Action_ID FROM tbl_OperationalActionsRegister WHERE Status <> 'Complete'")
 my_cnx.close()
 
-action_ids = my_id_cur.fetchall()
+#initial effort, presents data in following format (1),
+#action_ids = my_id_cur.fetchall()
+#select_id = streamlit.selectbox('Select Action ID to Update:',action_ids)
+
+action_ids = list(my_id_cur.fetchall())
 select_id = streamlit.selectbox('Select Action ID to Update:',action_ids)
