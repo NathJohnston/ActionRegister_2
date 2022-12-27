@@ -80,19 +80,22 @@ select_id = streamlit.selectbox('Select Action ID:',final_result)
 
    #Function to update record based on select box selected id
    #Allow the end user to add a new record to the action list
-#def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status):   
-#   with my_cnx.cursor() as my_cur:
-#      my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ ud_action +"', Owner = '"+ ud_owner +"', DueDate = '"+ ud_due_date +"', Status = '"+ ud_status +"' WHERE Action_ID = 3")
-      #my_cnx.close()
-#   return "Action ID ... Updated " #+ Action
+def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status): 
+   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+   with my_cnx.cursor() as my_cur:
+      my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ ud_action +"', Owner = '"+ ud_owner +"', DueDate = '"+ ud_due_date +"', Status = '"+ ud_status +"' WHERE Action_ID = "+ str(select_id) +"")
+      my_cnx.close()
+   return str(select_id)
 
    #Update record for action ID selected in the selected_id selectbox
 if streamlit.button('Update Action'):
-   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-   my_cur = my_cnx.cursor()
-   my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ action +"', Owner = '"+ owner +"', DueDate = '"+ due_date +"', Status = '"+ status +"' WHERE Action_ID = "+ str(select_id) +"")
-   my_cnx.close()
-   streamlit.success('Action ID: ' + str(select_id) + ' Update Succeded')
+   #my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+   #my_cur = my_cnx.cursor()
+   #my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ action +"', Owner = '"+ owner +"', DueDate = '"+ due_date +"', Status = '"+ status +"' WHERE Action_ID = "+ str(select_id) +"")
+   #my_cnx.close()
+   
+   back_from_function = update_selected_action(action, owner, due_date, status)
+   streamlit.success('Action ID: ' + str(back_from_function) + ' Update Succeded')
  
 
 
