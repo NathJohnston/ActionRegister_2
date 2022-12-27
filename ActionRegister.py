@@ -67,7 +67,7 @@ with streamlit.sidebar:
       #convert the date to the required string format
    action_date = date_select1.strftime("%m/%d/%Y")
    action = streamlit.text_input('Action details:','Enter details')
-   owner = streamlit.text_input('Action Owner:','Enter owner details)
+   owner = streamlit.text_input('Action Owner:','Enter owner details')
    date_select2 = streamlit.date_input('Action Due Date:')
       #convert the date to the required string format
    due_date = date_select2.strftime("%m/%d/%Y")
