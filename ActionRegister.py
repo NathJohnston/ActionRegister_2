@@ -57,7 +57,10 @@ def insert_row_snowflake(action_date, action, owner, due_date, status):
       return "New action added " #+ Action
 
 def refresh_dataframe():
-   my_dataframe_cur = my_cnx.cursor()
+   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+   with my_cnx.cursor() as my_dataframe_cur:
+      my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
+
    #my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
    #df = pandas.DataFrame(
    #my_data_rows,
