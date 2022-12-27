@@ -53,6 +53,7 @@ with streamlit.sidebar:
    #Use a Function and Button to Add new record
    #Allow the end user to add a new record to the action list
 def insert_row_snowflake(action_date, action, owner, due_date, status):
+   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    with my_cnx.cursor() as my_cur:
       my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', '"+ due_date +"', '"+ status +"')")
       my_cnx.close()
@@ -61,9 +62,8 @@ def insert_row_snowflake(action_date, action, owner, due_date, status):
 
 with streamlit.sidebar:   
    if streamlit.button('Create new Action'):
-      my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+      #my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
       back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
-      #my_cnx.close()
       streamlit.success(back_from_function)
 
 #Retrieve list of active action ID's
