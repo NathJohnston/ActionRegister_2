@@ -52,7 +52,7 @@ def insert_row_snowflake(action_date, action, owner, due_date, status):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    with my_cnx.cursor() as my_cur:
       my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', '"+ due_date +"', '"+ status +"')")
-      #refresh_dataframe()
+      refresh_dataframe()
       my_cnx.close()
       return "New action added " #+ Action
 
