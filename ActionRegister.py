@@ -86,7 +86,7 @@ my_id_cur = my_cnx.cursor()
 my_id_cur.execute("SELECT Action_ID FROM tbl_OperationalActionsRegister WHERE Status <> 'Complete'")
 my_cnx.close()
 
-c1, c2 = streamlit.columns((3,7))
+c1, c2 = streamlit.columns((1,9))
    #format the results in the cursor and populate the select box object
 with c1:
    action_ids = my_id_cur.fetchall() 
