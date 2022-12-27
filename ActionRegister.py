@@ -52,18 +52,8 @@ def insert_row_snowflake(action_date, action, owner, due_date, status):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    with my_cnx.cursor() as my_cur:
       my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', '"+ due_date +"', '"+ status +"')")
-      refresh_dataframe()
-      #my_cnx.close()
+      my_cnx.close()
       return "New action added " #+ Action
-
-def refresh_dataframe():
-   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-   with my_cnx.cursor() as my_dataframe_cur:
-      my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
-      df = pandas.DataFrame(
-         my_data_rows,
-         columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
-      streamlit.dataframe(df)#,width=3000,height=245)
      
    #Function to update record based on select box selected id
    #Allow the end user to add a new record to the action list
