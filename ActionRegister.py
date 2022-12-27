@@ -83,7 +83,7 @@ my_cnx.close()
    #format the results in the cursor and populate the select box object
 action_ids = my_id_cur.fetchall() 
 final_result = [i[0] for i in action_ids]
-select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
+#select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
 #select_id = streamlit.selectbox(:blue[Select Action ID:],('Email', 'Home phone', 'Mobile phone')) -- does not work
 
    #Retrieve Action based on selected action ID
@@ -94,12 +94,14 @@ my_cnx.close()
 
 
 updateAction = action_to_update_cur.fetchmany()
-col1,col2 = streamlit.columns(2)
+col1,col2,col3 = streamlit.columns(3)
 with col1:
+   select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
+with col2:
    for row in updateAction:
        Up_action = streamlit.text_input('Action details:',f"{row[2]}")
       
-with col2:
+with col3:
    for row in updateAction:
        Up_action = streamlit.text_input('Action details:',f"{row[3]}") 
    
