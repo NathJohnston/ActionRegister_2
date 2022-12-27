@@ -7,10 +7,10 @@ import snowflake.connector
 #use this for Control of Flow changes - error message handling
 from urllib.error import URLError
 
-
+   #Set page title
 streamlit.title('Actions and Issues Tracker')
 
-#test snowflake connection
+   #Connect to Snowflake and instantiate cursor object
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 # ---- test my connection----------------------------------------------------
@@ -19,23 +19,25 @@ my_cur = my_cnx.cursor()
 #streamlit.text(my_data_row)
 # ---------------------------------------------------------------------------
 
+   #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
 my_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
 my_cnx.close()
 
-
+   #Populate my_data_rows variable with cursor results
 my_data_rows = my_cur.fetchall()
 
+   #Create action table header
 streamlit.header(':blue[Action/ Issue Register] :runner:')
-#streamlit.dataframe(my_data_row)
 
+   #Populate dataframe
 df = pandas.DataFrame(
    my_data_rows,
    columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
 
 streamlit.dataframe(df)#,width=3000,height=245)
-#streamlit.table(df)
 
-# new action variables
+
+   #create new action variables and objects in sidebar object
 with streamlit.sidebar:
    streamlit.header(':lower_left_ballpoint_pen: :blue[Enter New Action]')
    #action_date = streamlit.text_input('Action date:') # Date picker
