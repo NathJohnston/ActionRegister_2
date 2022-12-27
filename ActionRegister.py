@@ -86,12 +86,8 @@ streamlit.subheader('Update existing Action')
 
 action_ids = my_id_cur.fetchall() 
 final_result = [i[0] for i in action_ids]
-try:
-   select_id = streamlit.selectbox('Select Action ID:',final_result)
-   if not select_id:
-      streamlit.error("No Action ID selected.")
-   else:
-      streamlit.text('the following ID was selected:',select_id)
-      
-except URLError as e:
-    streamlit.error()
+
+select_id = streamlit.selectbox('Select Action ID:',final_result)
+
+streamlit.text('the following ID was selected:',select_id)
+
