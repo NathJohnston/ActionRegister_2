@@ -100,8 +100,8 @@ for row in updateAction:
    ud_due_date = streamlit.text_input('Due Date:',f'{row[4]}')
    ud_status = streamlit.text_input('Status:',f'{row[5]}') 
    txtstatus = str(f"{row[5]}")
-   streamlit.write(f"{row[5]}")
-   ud_status2 = streamlit.selectbox('Current Status:', ) #('New', 'In Progress', 'Delayed','Complete')
+   #streamlit.write(f"{row[5]}")
+   ud_status2 = streamlit.selectbox('Current Status:', txtstatus) #('New', 'In Progress', 'Delayed','Complete')
 
 #col1,col2 = streamlit.columns(2)
 #with col1:
