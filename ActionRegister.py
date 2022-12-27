@@ -78,5 +78,23 @@ my_cnx.close()
 #action_ids = my_id_cur.fetchall()
 #select_id = streamlit.selectbox('Select Action ID to Update:',action_ids)
 
-action_ids = list(my_id_cur.fetchall())
-select_id = streamlit.selectbox('Select Action ID to Update:',action_ids)
+#action_ids = list(my_id_cur.fetchall())
+#select_id = streamlit.selectbox('Select Action ID to Update:',action_ids)
+
+action_ids = my_id_cur.fetchall() //action_ids =(1,2,3) or action_ids =((1,3(,(4,5),)
+final_result = [i[0] for i in action_ids]
+select_id = streamlit.selectbox('Select Action ID to Update:',final_result)
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
