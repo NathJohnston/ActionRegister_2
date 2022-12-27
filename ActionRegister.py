@@ -84,7 +84,7 @@ streamlit.subheader('Update existing Action')
 # don't run anything past here while I troubleshoot
 streamlit.stop()
 
-try:
-   action_ids = my_id_cur.fetchall() 
-   final_result = [i[0] for i in action_ids]
-   select_id = streamlit.selectbox('Select Action ID:',final_result)
+
+action_ids = my_id_cur.fetchall() 
+final_result = [i[0] for i in action_ids]
+select_id = streamlit.selectbox('Select Action ID:',final_result)
