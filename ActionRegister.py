@@ -12,18 +12,14 @@ streamlit.title('Actions and Issues Tracker')
 
    #Connect to Snowflake and instantiate cursor object
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-# ---- test my connection----------------------------------------------------
-#my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-#my_data_row = my_cur.fetchone()
-#streamlit.text(my_data_row)
-# ---------------------------------------------------------------------------
+my_dataframe_cur = my_cnx.cursor()
+
    #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
-my_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
+my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
 my_cnx.close()
 
    #Populate my_data_rows variable with cursor results
-my_data_rows = my_cur.fetchall()
+my_data_rows = my_dataframe_cur.fetchall()
 
    #Create action table header
 streamlit.header(':blue[Action/ Issue Register] :runner:')
@@ -97,8 +93,12 @@ if streamlit.button('Update Action'):
    streamlit.success('Action ID: ' + str(back_from_function) + ' Update Succeded')
  
 
-
-
+#TROUBLESHOOTING CODE
+# ---- test my connection----------------------------------------------------
+#my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+#my_data_row = my_cur.fetchone()
+#streamlit.text(my_data_row)
+# ---------------------------------------------------------------------------
 
 
 # don't run anything past here while I troubleshoot
