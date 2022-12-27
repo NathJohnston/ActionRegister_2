@@ -60,15 +60,11 @@ def refresh_dataframe():
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    with my_cnx.cursor() as my_dataframe_cur:
       my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
-
-   #my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
-   #df = pandas.DataFrame(
-   #my_data_rows,
-   #columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
-
-   #streamlit.dataframe(df)#,width=3000,height=245)
-   
-   
+      df = pandas.DataFrame(
+         my_data_rows,
+         columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
+      streamlit.dataframe(df)#,width=3000,height=245)
+     
    #Function to update record based on select box selected id
    #Allow the end user to add a new record to the action list
 def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status): 
