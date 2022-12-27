@@ -57,13 +57,14 @@ def insert_row_snowflake(action_date, action, owner, due_date, status):
       return "New action added " #+ Action
 
 def refresh_dataframe():
-   my_dataframe_cur = my_cnx.cursor()
-   my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
-   df = pandas.DataFrame(
-   my_data_rows,
-   columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
+   streamlit.title('test function')
+   #my_dataframe_cur = my_cnx.cursor()
+   #my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
+   #df = pandas.DataFrame(
+   #my_data_rows,
+   #columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
 
-   streamlit.dataframe(df)#,width=3000,height=245)
+   #streamlit.dataframe(df)#,width=3000,height=245)
    
    
    #Function to update record based on select box selected id
