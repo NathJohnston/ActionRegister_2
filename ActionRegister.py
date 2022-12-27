@@ -93,7 +93,7 @@ action_to_update_cur.execute("SELECT * FROM tbl_OperationalActionsRegister WHERE
 my_cnx.close()
 
 updateAction = action_to_update_cur.fetchone()
-streamlit.text(updateAction.column(1))
+streamlit.text(updateAction.columns(1))
 
    #Update record for action ID selected in the selected_id selectbox
 if streamlit.button('Update Action'):
