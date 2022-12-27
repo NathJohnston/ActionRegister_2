@@ -88,11 +88,11 @@ my_cnx.close()
 
 c1, c2 = streamlit.columns((3,7))
    #format the results in the cursor and populate the select box object
-   with c1:
-      action_ids = my_id_cur.fetchall() 
-      final_result = [i[0] for i in action_ids]
-      select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
-      #select_id = streamlit.selectbox(:blue[Select Action ID:],('Email', 'Home phone', 'Mobile phone')) -- does not work
+with c1:
+   action_ids = my_id_cur.fetchall() 
+   final_result = [i[0] for i in action_ids]
+   select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
+   #select_id = streamlit.selectbox(:blue[Select Action ID:],('Email', 'Home phone', 'Mobile phone')) -- does not work
 
 # Row C -----------------------------------------------------------------------------------------------------------------
    #Retrieve Action based on selected action ID
