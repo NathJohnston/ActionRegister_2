@@ -92,7 +92,8 @@ action_to_update_cur = my_cnx.cursor()
 action_to_update_cur.execute("SELECT * FROM tbl_OperationalActionsRegister WHERE Action_ID = "+ str(select_id) +"")
 my_cnx.close()
 
-
+updateAction = action_to_update_cur.fetchone(1)
+streamlit.text(updateAction)
 
    #Update record for action ID selected in the selected_id selectbox
 if streamlit.button('Update Action'):
