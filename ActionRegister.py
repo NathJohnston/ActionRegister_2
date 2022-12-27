@@ -92,3 +92,6 @@ try:
       streamlit.error("No Action ID selected.")
    else:
       streamlit.text('the following ID was selected:',select_id)
+      
+except URLError as e:
+    streamlit.error()
