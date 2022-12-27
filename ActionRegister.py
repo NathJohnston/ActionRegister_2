@@ -99,13 +99,13 @@ col1,col2,col3 = streamlit.columns(3)
 with col1:
    for row in updateAction:
        Up_action = streamlit.text_input('Action details:',f"{row[2]}")
-       Up_action = streamlit.text_input('Action details:',f"{row[4]}")
+       #Up_action = streamlit.text_input('Action details:',f"{row[4]}")
 
 with col2:
    for row in updateAction:
        Up_action = streamlit.text_input('Action details:',f"{row[3]}") 
       
-with col3:
+
    
    
 
