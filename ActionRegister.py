@@ -66,7 +66,7 @@ with streamlit.sidebar:
 
       #Create update action header
 streamlit.subheader(':orange[Update existing Active Action]')      
-streamlit.caption('Select Action ID:')        
+
    #Retrieve list of active action ID's
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_id_cur = my_cnx.cursor()
@@ -76,8 +76,8 @@ my_cnx.close()
    #format the results in the cursor and populate the select box object
 action_ids = my_id_cur.fetchall() 
 final_result = [i[0] for i in action_ids]
-#select_id = streamlit.selectbox('Select Action ID:',final_result)
-select_id = streamlit.selectbox('',final_result)
+select_id = streamlit.selectbox(:blue[Select Action ID:],final_result)
+#select_id = streamlit.selectbox('',final_result)
 
    #Function to update record based on select box selected id
    #Allow the end user to add a new record to the action list
