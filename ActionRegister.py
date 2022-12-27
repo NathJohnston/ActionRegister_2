@@ -124,15 +124,10 @@ with e3:
       #txtstatus = str(f"{row[5]}")
       #mystring = ' '.join(map(str,f"{row[5]}"))
       #ud_status2 = streamlit.selectbox('Current Status:', mystring) #('New', 'In Progress', 'Delayed','Complete')
-
-   
-
-
-     
       
-   #Update record for action ID selected in the selected_id selectbox
+#Update record for action ID selected in the selected_id selectbox
 if streamlit.button('Update Action'):
-   back_from_function = update_selected_action(action, owner, due_date, status)
+   back_from_function = update_selected_action(ud_action, ud_owner, ud_due_date, ud_status)
    streamlit.success('Action ID: ' + str(back_from_function) + ' Update Succeded')
  
 
