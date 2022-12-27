@@ -92,7 +92,7 @@ if streamlit.button('Update Action'):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    my_cur = my_cnx.cursor()
    #update_response = update_selected_action(action, owner, due_date, status)
-   my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ action +"', Owner = '"+ owner +"', DueDate = '"+ due_date +"', Status = '"+ status +"' WHERE Action_ID = " + select_id +"")
+   my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ action +"', Owner = '"+ owner +"', DueDate = '"+ due_date +"', Status = '"+ status +"' WHERE Action_ID = '"+ select_id +"'")
    my_cnx.close()
    streamlit.text('update succeded')
  
