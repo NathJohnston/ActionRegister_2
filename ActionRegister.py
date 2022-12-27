@@ -94,14 +94,17 @@ my_cnx.close()
 
 
 updateAction = action_to_update_cur.fetchmany()
-col1,col2 = streamlit.columns(2)
-with col1:
-   for row in updateAction:
+for row in updateAction:
        Up_action = streamlit.text_input('Action details:',f"{row[2]}")
+
+#col1,col2 = streamlit.columns(2)
+#with col1:
+#   for row in updateAction:
+#       Up_action = streamlit.text_input('Action details:',f"{row[2]}")
       
-with col2:
-   for row in updateAction:
-       Up_action = streamlit.text_input('Action details:',f"{row[3]}") 
+#with col2:
+#   for row in updateAction:
+#       Up_action = streamlit.text_input('Action details:',f"{row[3]}") 
    
    
 
