@@ -86,9 +86,9 @@ my_id_cur = my_cnx.cursor()
 my_id_cur.execute("SELECT Action_ID FROM tbl_OperationalActionsRegister WHERE Status <> 'Complete'")
 my_cnx.close()
 
-c1, c2 = streamlit.columns((1,9))
+b1, b2 = streamlit.columns((1,9))
    #format the results in the cursor and populate the select box object
-with c1:
+with b1:
    action_ids = my_id_cur.fetchall() 
    final_result = [i[0] for i in action_ids]
    select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
@@ -100,12 +100,19 @@ my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 action_to_update_cur = my_cnx.cursor()
 action_to_update_cur.execute("SELECT * FROM tbl_OperationalActionsRegister WHERE Action_ID = "+ str(select_id) +"")
 my_cnx.close()
-
-
 updateAction = action_to_update_cur.fetchmany()
+
+# Row D -----------------------------------------------------------------------------------------------------------------
 for row in updateAction:
    ud_action = streamlit.text_input('Action details:',f'{row[2]}')
+   
+# Row E -----------------------------------------------------------------------------------------------------------------   
+e1, e2, e3 = streamlit.columns((4,3,3))
+with e1:
+for row in updateAction:   
    ud_owner = streamlit.text_input('Owner:',f'{row[3]}')
+   
+with e2:
    ud_due_date = streamlit.text_input('Due Date:',f'{row[4]}')
    ud_status = streamlit.text_input('Status:',f'{row[5]}') 
    txtstatus = str(f"{row[5]}")
