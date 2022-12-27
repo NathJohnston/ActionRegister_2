@@ -86,6 +86,13 @@ final_result = [i[0] for i in action_ids]
 select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
 #select_id = streamlit.selectbox(:blue[Select Action ID:],('Email', 'Home phone', 'Mobile phone')) -- does not work
 
+   #Retrieve Action based on selected action ID
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+action_to_update_cur = my_cnx.cursor()
+action_to_update_cur.execute("SELECT * FROM tbl_OperationalActionsRegister WHERE Action_ID  "+ str(select_id) +"")
+my_cnx.close()
+
+
 
    #Update record for action ID selected in the selected_id selectbox
 if streamlit.button('Update Action'):
