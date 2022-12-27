@@ -95,7 +95,7 @@ my_cnx.close()
 
 updateAction = action_to_update_cur.fetchmany()
 for row in updateAction:
-   streamlit.write(f"{row[0]} has a :{row[1]}:")
+   streamlit.write(f"{row[2]}")
    #Up_action = streamlit.text_input('Action details:',f"{row[2]}")
 #       Up_action = streamlit.text_input('Action details:',f"{row[2]}")
 
