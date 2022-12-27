@@ -82,8 +82,7 @@ my_cnx.close()
 streamlit.subheader('Update existing Action')
 
 # don't run anything past here while I troubleshoot
-streamlit.stop()
-
+#streamlit.stop()
 
 action_ids = my_id_cur.fetchall() 
 final_result = [i[0] for i in action_ids]
