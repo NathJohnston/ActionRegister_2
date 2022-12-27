@@ -9,6 +9,8 @@ from urllib.error import URLError
 
 #set page layout
 streamlit.set_page_config(layout="wide")
+
+# Row A -----------------------------------------------------------------------------------------------------------------
    #Set page title
 streamlit.title('Actions and Issues Tracker')
 
@@ -33,7 +35,7 @@ df = pandas.DataFrame(
 
 streamlit.dataframe(df,width=1500,height=245)
 
-
+# Sidebar ----------------------------------------------------------------------------------------------------------------
    #create new action variables and objects in sidebar object
 with streamlit.sidebar:
    streamlit.header(':lower_left_ballpoint_pen: :blue[Enter New Action]')
@@ -46,26 +48,6 @@ with streamlit.sidebar:
       #convert the date to the required string format
    due_date = date_select2.strftime("%m/%d/%Y")
    status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'))
-
-# -------------------------------------FUNCTIONS--------------------------------------
-   #Use a Function and Button to Add new record
-   #Allow the end user to add a new record to the action list
-def insert_row_snowflake(action_date, action, owner, due_date, status):
-   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-   with my_cnx.cursor() as my_cur:
-      my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', '"+ due_date +"', '"+ status +"')")
-      my_cnx.close()
-      return "New action added " #+ Action
-     
-   #Function to update record based on select box selected id
-   #Allow the end user to add a new record to the action list
-def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status): 
-   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-   with my_cnx.cursor() as my_cur:
-      my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ ud_action +"', Owner = '"+ ud_owner +"', DueDate = '"+ ud_due_date +"', Status = '"+ ud_status +"' WHERE Action_ID = "+ str(select_id) +"")
-      my_cnx.close()
-   return str(select_id)
-# ---------------------------------------------------------------------------------
 
    #Insert new action record based on sliderbar objects
 with streamlit.sidebar:   
@@ -124,6 +106,28 @@ if streamlit.button('Update Action'):
    back_from_function = update_selected_action(action, owner, due_date, status)
    streamlit.success('Action ID: ' + str(back_from_function) + ' Update Succeded')
  
+# -------------------------------------FUNCTIONS--------------------------------------
+   #Use a Function and Button to Add new record
+   #Allow the end user to add a new record to the action list
+def insert_row_snowflake(action_date, action, owner, due_date, status):
+   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+   with my_cnx.cursor() as my_cur:
+      my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', '"+ due_date +"', '"+ status +"')")
+      my_cnx.close()
+      return "New action added " #+ Action
+     
+   #Function to update record based on select box selected id
+   #Allow the end user to add a new record to the action list
+def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status): 
+   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+   with my_cnx.cursor() as my_cur:
+      my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ ud_action +"', Owner = '"+ ud_owner +"', DueDate = '"+ ud_due_date +"', Status = '"+ ud_status +"' WHERE Action_ID = "+ str(select_id) +"")
+      my_cnx.close()
+   return str(select_id)
+# ---------------------------------------------------------------------------------
+
+
+
 
 #TROUBLESHOOTING CODE
 # ---- test my connection----------------------------------------------------
