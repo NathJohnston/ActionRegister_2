@@ -79,7 +79,7 @@ my_cnx.close()
 #action_ids = list(my_id_cur.fetchall())
 #select_id = streamlit.selectbox('Select Action ID to Update:',action_ids)
 
-streamlit.subheader('Update existing Action')
+streamlit.subheader(':orange[Update existing Active Action]')
 
 # don't run anything past here while I troubleshoot
 #streamlit.stop()
