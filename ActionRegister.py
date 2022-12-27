@@ -32,7 +32,7 @@ def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status):
 streamlit.set_page_config(layout="wide")
 
 with open('style.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    streamlit.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # Row A -----------------------------------------------------------------------------------------------------------------
    #Set page title
