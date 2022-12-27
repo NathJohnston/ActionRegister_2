@@ -53,7 +53,7 @@ def insert_row_snowflake(action_date, action, owner, due_date, status):
    with my_cnx.cursor() as my_cur:
       my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', '"+ due_date +"', '"+ status +"')")
       refresh_dataframe()
-      my_cnx.close()
+      #my_cnx.close()
       return "New action added " #+ Action
 
 def refresh_dataframe():
