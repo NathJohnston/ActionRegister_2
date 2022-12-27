@@ -31,7 +31,7 @@ df = pandas.DataFrame(
    my_data_rows,
    columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
 
-streamlit.dataframe(df)#,width=3000,height=245)
+streamlit.dataframe(df,width=3000,height=245)
 
 
    #create new action variables and objects in sidebar object
