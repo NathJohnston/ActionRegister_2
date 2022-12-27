@@ -118,9 +118,9 @@ with e3:
    for row in updateAction:
       ud_status = streamlit.text_input('Status:',f'{row[5]}') 
       
-      txtstatus = str(f"{row[5]}")
-      mystring = ' '.join(map(str,f"{row[5]}"))
-      ud_status2 = streamlit.selectbox('Current Status:', mystring) #('New', 'In Progress', 'Delayed','Complete')
+      #txtstatus = str(f"{row[5]}")
+      #mystring = ' '.join(map(str,f"{row[5]}"))
+      #ud_status2 = streamlit.selectbox('Current Status:', mystring) #('New', 'In Progress', 'Delayed','Complete')
 
    
 
