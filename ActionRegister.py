@@ -110,8 +110,7 @@ for row in updateAction:
 e1, e2, e3 = streamlit.columns((4,3,3))
 with e1:
    for row in updateAction:   
-      ud_owner = streamlit.text_input('Owner:',f'{row[3]}')
-   
+      ud_owner = streamlit.text_input('Owner:',f'{row[3]}')   
 with e2:
    for row in updateAction:
       ud_due_date = streamlit.text_input('Due Date:',f'{row[4]}')
@@ -119,16 +118,13 @@ with e2:
       txtstatus = str(f"{row[5]}")
       #streamlit.write(f"{row[5]}")
       #ud_status2 = streamlit.selectbox('Current Status:', txtstatus) #('New', 'In Progress', 'Delayed','Complete')
+with e3:
+   for row in updateAction:
+      ud_status = streamlit.text_input('Status:',f'{row[5]}') 
+      #txtstatus = str(f"{row[5]}")
+      #streamlit.write(f"{row[5]}")
+      #ud_status2 = streamlit.selectbox('Current Status:', txtstatus) #('New', 'In Progress', 'Delayed','Complete')
 
-#col1,col2 = streamlit.columns(2)
-#with col1:
-#   for row in updateAction:
-#       Up_action = streamlit.text_input('Action details:',f"{row[2]}")
-      
-#with col2:
-#   for row in updateAction:
-#       Up_action = streamlit.text_input('Action details:',f"{row[3]}") 
-   
    
 
 
