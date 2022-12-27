@@ -96,7 +96,7 @@ updateAction = action_to_update_cur.fetchmany()
 streamlit.text(updateAction)
 for row in updateAction:
     streamlit.write(f"{row[0]} has a :{row[1]}:")
-streamlit.write(f"{updateAction.row[0]}")     
+#streamlit.write(f"{updateAction.row[0]}")     
       
    #Update record for action ID selected in the selected_id selectbox
 if streamlit.button('Update Action'):
