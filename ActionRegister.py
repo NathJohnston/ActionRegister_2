@@ -7,6 +7,8 @@ import snowflake.connector
 #use this for Control of Flow changes - error message handling
 from urllib.error import URLError
 
+#set page layout
+streamlit.set_page_config(layout="wide")
    #Set page title
 streamlit.title('Actions and Issues Tracker')
 
