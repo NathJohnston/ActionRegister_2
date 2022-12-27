@@ -95,10 +95,10 @@ my_cnx.close()
 
 updateAction = action_to_update_cur.fetchmany()
 for row in updateAction:
-   ud_action = streamlit.text_input('Action details:',f"{row[2]}")
-   ud_owner = streamlit.text_input('Owner:',f"{row[3]}")
-   ud_due_date = streamlit.text_input('Due Date:',f"{row[4]}")
-   ud_status = streamlit.text_input('Status:',f'{row[5]}') 
+   ud_action = streamlit.text_input('Action details:',f'{row[2]}')
+   ud_owner = streamlit.text_input('Owner:',f'{row[3]}')
+   ud_due_date = streamlit.text_input('Due Date:',f'{row[4]}')
+   #ud_status = streamlit.text_input('Status:',f'{row[5]}') 
    #ud_status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'),f"{row[5]}")
 
 #col1,col2 = streamlit.columns(2)
