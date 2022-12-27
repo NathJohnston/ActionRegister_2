@@ -92,11 +92,8 @@ action_to_update_cur = my_cnx.cursor()
 action_to_update_cur.execute("SELECT * FROM tbl_OperationalActionsRegister WHERE Action_ID = "+ str(select_id) +"")
 my_cnx.close()
 
-updateAction = action_to_update_cur.fetchmany()
-streamlit.text(updateAction)
+updateAction = action_to_update_cur.fetchone()
 for row in updateAction:
-    streamlit.text(f"{row[0]}")
-    streamlit.text(f"{row[2]}")
     Up_action = streamlit.text_input('Action details:',f"{row[2]}")
 #streamlit.write(f"{updateAction.row[0]}")     
       
