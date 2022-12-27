@@ -89,7 +89,7 @@ select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibili
    #Retrieve Action based on selected action ID
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 action_to_update_cur = my_cnx.cursor()
-action_to_update_cur.execute("SELECT * FROM tbl_OperationalActionsRegister WHERE Action_ID  "+ str(select_id) +"")
+action_to_update_cur.execute("SELECT * FROM tbl_OperationalActionsRegister WHERE Action_ID = "+ str(select_id) +"")
 my_cnx.close()
 
 
