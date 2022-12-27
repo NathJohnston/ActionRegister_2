@@ -120,7 +120,7 @@ with e3:
       
       txtstatus = str(f"{row[5]}")
       mystring = ' '.join(map(str,f"{row[5]}"))
-      ud_status2 = streamlit.selectbox('Current Status:', txtstatus) #('New', 'In Progress', 'Delayed','Complete')
+      ud_status2 = streamlit.selectbox('Current Status:', mystring) #('New', 'In Progress', 'Delayed','Complete')
 
    
 
