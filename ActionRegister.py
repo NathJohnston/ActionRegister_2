@@ -18,7 +18,6 @@ my_cur = my_cnx.cursor()
 #my_data_row = my_cur.fetchone()
 #streamlit.text(my_data_row)
 # ---------------------------------------------------------------------------
-
    #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
 my_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
 my_cnx.close()
@@ -59,40 +58,30 @@ def insert_row_snowflake(action_date, action, owner, due_date, status):
       my_cnx.close()
       return "New action added " #+ Action
 
-
+   #Insert new action record based on sliderbar objects
 with streamlit.sidebar:   
    if streamlit.button('Create new Action'):
-      #my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
       back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
       streamlit.success(back_from_function)
 
-#Retrieve list of active action ID's
+      #Create update action header
+streamlit.subheader(':orange[Update existing Active Action]')      
+      
+   #Retrieve list of active action ID's
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_id_cur = my_cnx.cursor()
-
 my_id_cur.execute("SELECT Action_ID FROM tbl_OperationalActionsRegister WHERE Status <> 'Complete'")
 my_cnx.close()
 
-#initial effort, presents data in following format (1),
-#action_ids = my_id_cur.fetchall()
-#select_id = streamlit.selectbox('Select Action ID to Update:',action_ids)
-
-#action_ids = list(my_id_cur.fetchall())
-#select_id = streamlit.selectbox('Select Action ID to Update:',action_ids)
-
-streamlit.subheader(':orange[Update existing Active Action]')
-
-# don't run anything past here while I troubleshoot
-#streamlit.stop()
-
+   #format the results in the cursor and populate the select box object
 action_ids = my_id_cur.fetchall() 
 final_result = [i[0] for i in action_ids]
 select_id = streamlit.selectbox('Select Action ID:',final_result)
 
+   #Update record for action ID selected in the selected_id selectbox
 if streamlit.button('Update Action'):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    my_cur = my_cnx.cursor()
-   #update_response = update_selected_action(action, owner, due_date, status)
    my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ action +"', Owner = '"+ owner +"', DueDate = '"+ due_date +"', Status = '"+ status +"' WHERE Action_ID = "+ str(select_id) +"")
    my_cnx.close()
    streamlit.success('Action ID: ' + str(select_id) + ' Update Succeded')
@@ -104,3 +93,7 @@ def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status):
       my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ ud_action +"', Owner = '"+ ud_owner +"', DueDate = '"+ ud_due_date +"', Status = '"+ ud_status +"' WHERE Action_ID = 3")
       #my_cnx.close()
    return "Action ID ... Updated " #+ Action
+
+
+# don't run anything past here while I troubleshoot
+#streamlit.stop()
