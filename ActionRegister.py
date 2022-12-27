@@ -66,7 +66,7 @@ with streamlit.sidebar:
 
       #Create update action header
 streamlit.subheader(':orange[Update existing Active Action]')      
-streamlit.Caption('Select Action ID:')        
+streamlit.caption('Select Action ID:')        
    #Retrieve list of active action ID's
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_id_cur = my_cnx.cursor()
