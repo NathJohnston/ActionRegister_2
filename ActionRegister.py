@@ -40,23 +40,22 @@ streamlit.dataframe(df)#,width=3000,height=245)
    #create new action variables and objects in sidebar object
 with streamlit.sidebar:
    streamlit.header(':lower_left_ballpoint_pen: :blue[Enter New Action]')
-   #action_date = streamlit.text_input('Action date:') # Date picker
    date_select1 = streamlit.date_input('Action date:')
+      #convert the date to the required string format
    action_date = date_select1.strftime("%m/%d/%Y")
    action = streamlit.text_input('Action details:')
    owner = streamlit.text_input('Action Owner:')
-   #due_date = streamlit.text_input('Action Due Date:') # Date picker
    date_select2 = streamlit.date_input('Action Due Date:')
+      #convert the date to the required string format
    due_date = date_select2.strftime("%m/%d/%Y")
-   #status = streamlit.text_input('Current Status:') # Status dropdown box
    status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'))
 
-# Use a Function and Button to Add new record
-# Allow the end user to add a new record to the action list
+   #Use a Function and Button to Add new record
+   #Allow the end user to add a new record to the action list
 def insert_row_snowflake(action_date, action, owner, due_date, status):
    with my_cnx.cursor() as my_cur:
-      #my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES (to_date('"+ action_date2 +"','DD/MM/YYYY'), '"+ action +"', '"+ owner +"', to_date('"+ due_date +"','DD/MM/YYYY'), '"+ status +"')")
       my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', '"+ due_date +"', '"+ status +"')")
+      my_cnx.close()
       return "New action added " #+ Action
 
 
@@ -64,7 +63,7 @@ with streamlit.sidebar:
    if streamlit.button('Create new Action'):
       my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
       back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
-      my_cnx.close()
+      #my_cnx.close()
       streamlit.success(back_from_function)
 
 #Retrieve list of active action ID's
