@@ -81,8 +81,8 @@ my_id_cur.execute("SELECT Action_ID FROM tbl_OperationalActionsRegister WHERE St
 my_cnx.close()
 
    #format the results in the cursor and populate the select box object
-action_ids = my_id_cur.fetchall() 
-final_result = [i[0] for i in action_ids]
+#action_ids = my_id_cur.fetchall() 
+#final_result = [i[0] for i in action_ids]
 #select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
 #select_id = streamlit.selectbox(:blue[Select Action ID:],('Email', 'Home phone', 'Mobile phone')) -- does not work
 
@@ -96,6 +96,8 @@ my_cnx.close()
 updateAction = action_to_update_cur.fetchmany()
 col1,col2,col3 = streamlit.columns(3)
 with col1:
+   action_ids = my_id_cur.fetchall()
+   final_result = [i[0] for i in action_ids]
    select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
 with col2:
    for row in updateAction:
