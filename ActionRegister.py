@@ -89,5 +89,5 @@ final_result = [i[0] for i in action_ids]
 
 select_id = streamlit.selectbox('Select Action ID:',final_result)
 
-streamlit.text('the following ID was selected:',select_id)
+#streamlit.text('the following ID was selected:',select_id)
 
