@@ -49,6 +49,7 @@ with streamlit.sidebar:
    due_date = date_select2.strftime("%m/%d/%Y")
    status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'))
 
+# -------------------------------------FUNCTIONS--------------------------------------
    #Use a Function and Button to Add new record
    #Allow the end user to add a new record to the action list
 def insert_row_snowflake(action_date, action, owner, due_date, status):
@@ -57,6 +58,16 @@ def insert_row_snowflake(action_date, action, owner, due_date, status):
       my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', '"+ due_date +"', '"+ status +"')")
       my_cnx.close()
       return "New action added " #+ Action
+   
+   #Function to update record based on select box selected id
+   #Allow the end user to add a new record to the action list
+def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status): 
+   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+   with my_cnx.cursor() as my_cur:
+      my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ ud_action +"', Owner = '"+ ud_owner +"', DueDate = '"+ ud_due_date +"', Status = '"+ ud_status +"' WHERE Action_ID = "+ str(select_id) +"")
+      my_cnx.close()
+   return str(select_id)
+# ---------------------------------------------------------------------------------
 
    #Insert new action record based on sliderbar objects
 with streamlit.sidebar:   
@@ -77,17 +88,8 @@ my_cnx.close()
 action_ids = my_id_cur.fetchall() 
 final_result = [i[0] for i in action_ids]
 select_id = streamlit.selectbox('Select Action ID:',final_result, label_visibility="collapsed")
-select_id2 = streamlit.selectbox(:blue[Select Action ID:],('Email', 'Home phone', 'Mobile phone'))
+#select_id = streamlit.selectbox(:blue[Select Action ID:],('Email', 'Home phone', 'Mobile phone')) -- does not work
 
-
-   #Function to update record based on select box selected id
-   #Allow the end user to add a new record to the action list
-def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status): 
-   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-   with my_cnx.cursor() as my_cur:
-      my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ ud_action +"', Owner = '"+ ud_owner +"', DueDate = '"+ ud_due_date +"', Status = '"+ ud_status +"' WHERE Action_ID = "+ str(select_id) +"")
-      my_cnx.close()
-   return str(select_id)
 
    #Update record for action ID selected in the selected_id selectbox
 if streamlit.button('Update Action'):
