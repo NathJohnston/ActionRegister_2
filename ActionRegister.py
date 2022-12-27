@@ -94,7 +94,10 @@ my_cnx.close()
 
 updateAction = action_to_update_cur.fetchmany()
 streamlit.text(updateAction)
-
+for row in updateAction:
+    st.write(f"{row[0]} has a :{row[1]}:"
+      
+      
    #Update record for action ID selected in the selected_id selectbox
 if streamlit.button('Update Action'):
    back_from_function = update_selected_action(action, owner, due_date, status)
