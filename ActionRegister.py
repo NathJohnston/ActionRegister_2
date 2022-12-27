@@ -63,7 +63,7 @@ with streamlit.sidebar:
       my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
       back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
       my_cnx.close()
-      streamlit.text(back_from_function)
+      streamlit.success(back_from_function)
 
 #Retrieve list of active action ID's
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
@@ -94,7 +94,7 @@ if streamlit.button('Update Action'):
    #update_response = update_selected_action(action, owner, due_date, status)
    my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ action +"', Owner = '"+ owner +"', DueDate = '"+ due_date +"', Status = '"+ status +"' WHERE Action_ID = "+ str(select_id) +"")
    my_cnx.close()
-   streamlit.success('Update Succeded')
+   streamlit.success(str(select_id) + ' Update Succeded')
  
 
 
