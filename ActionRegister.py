@@ -95,5 +95,5 @@ def update_seleced_action(ud_action, ud_owner, ud_due_date, ud_status):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    with my_cnx.cursor() as my_cur:
       my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ ud_action +"', Owner = '"+ ud_owner +"', DueDate = '"+ ud_due_date +"', Status = '"+ ud_status +"' WHERE Action_ID = 3)
-      my_cnx.close()
+      #my_cnx.close()
    return "Action ID ... Updated " #+ Action
