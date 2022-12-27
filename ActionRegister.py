@@ -89,7 +89,8 @@ final_result = [i[0] for i in action_ids]
 select_id = streamlit.selectbox('Select Action ID:',final_result)
 
 if streamlit.button('Update Action'):
-   streamlit.text('selected ID:', select_id)
+   update_response = update_seleced_action(action, owner, due_date, status)
+   streamlit.text(update_response)
    
 def update_seleced_action(ud_action, ud_owner, ud_due_date, ud_status):   
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
