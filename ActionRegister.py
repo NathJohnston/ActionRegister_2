@@ -92,12 +92,19 @@ action_to_update_cur = my_cnx.cursor()
 action_to_update_cur.execute("SELECT * FROM tbl_OperationalActionsRegister WHERE Action_ID = "+ str(select_id) +"")
 my_cnx.close()
 
-col1,col2 = streamlit.columns(2)
-
 
 updateAction = action_to_update_cur.fetchmany()
-for row in updateAction:
-    Up_action = streamlit.text_input('Action details:',f"{row[2]}")
+col1,col2 = streamlit.columns(2)
+with col1:
+   for row in updateAction:
+       Up_action = streamlit.text_input('Action details:',f"{row[2]}")
+      
+with col2:
+   for row in updateAction:
+       Up_action = streamlit.text_input('Action details:',f"{row[3]}") 
+   
+
+
      
       
    #Update record for action ID selected in the selected_id selectbox
