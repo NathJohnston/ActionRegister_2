@@ -34,6 +34,7 @@ streamlit.set_page_config(layout="wide")
 #with open('style.css') as f:
 #    streamlit.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
+
 # Row A -----------------------------------------------------------------------------------------------------------------
    #Set page title
 streamlit.title('Actions and Issues Tracker')
@@ -56,6 +57,16 @@ streamlit.header(':blue[Action/ Issue Register] :runner:')
 df = pandas.DataFrame(
    my_data_rows,
    columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
+
+# CSS to inject contained in a string
+hide_dataframe_row_index = """
+            <style>
+            .row_heading.level0 {display:none}
+            .blank {display:none}
+            </style>
+            """
+# Inject CSS with Markdown
+st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
 
 streamlit.dataframe(df,width=1500,height=245)
 
