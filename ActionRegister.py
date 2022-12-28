@@ -66,7 +66,7 @@ hide_dataframe_row_index = """
             </style>
             """
 # Inject CSS with Markdown
-st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+streamlit.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
 
 streamlit.dataframe(df,width=1500,height=245)
 
