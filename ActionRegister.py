@@ -158,7 +158,7 @@ with streamlit.sidebar:
    if streamlit.button('Create new Action'):
       back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
       streamlit.success(back_from_function)
-      
+"""      
 # Row B -----------------------------------------------------------------------------------------------------------------
       #Create update action header
 streamlit.subheader(':orange[Update existing Active Action - Select Action ID]')      
