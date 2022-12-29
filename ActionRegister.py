@@ -88,39 +88,9 @@ def check_password():
 if check_password():
     #streamlit.write("Here goes your normal Streamlit app...")
       #Set page title
-    streamlit.title('Actions and Issues Tracker')
-    streamlit.write('my password:', streamlit.secrets["password"]) 
-      #Connect to Snowflake and instantiate cursor object
-    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-    my_dataframe_cur = my_cnx.cursor()
-         #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
-    my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
-    my_cnx.close()
-      
-         #Populate my_data_rows variable with cursor results
-    my_data_rows = my_dataframe_cur.fetchall()
-   
-      #Create action table header
-    streamlit.header(':blue[Action/ Issue Register] :runner:')
 
-      #Populate dataframe
-    df = pandas.DataFrame(      
-       my_data_rows,
-       columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
-
-      # CSS to inject contained in a string
-    hide_dataframe_row_index = """
-            <style>
-            .row_heading.level0 {display:none}
-            .blank {display:none}
-            </style>
-            """
-      # Inject CSS with Markdown
-    streamlit.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
-
-    streamlit.dataframe(df,width=1500,height=245)
     
-    buildsidebar()
+    #buildsidebar()
    
    
    
@@ -128,60 +98,58 @@ if check_password():
 
 # Row A -----------------------------------------------------------------------------------------------------------------
    #Set page title
-#-streamlit.title('Actions and Issues Tracker')
-#-streamlit.write('my password:', streamlit.secrets["password"]) 
+streamlit.title('Actions and Issues Tracker')
+streamlit.write('my password:', streamlit.secrets["password"]) 
    #Connect to Snowflake and instantiate cursor object
-#-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-#-my_dataframe_cur = my_cnx.cursor()
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_dataframe_cur = my_cnx.cursor()
 
    #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
-#-my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
-#-my_cnx.close()
+my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
+my_cnx.close()
 
    #Populate my_data_rows variable with cursor results
-#-my_data_rows = my_dataframe_cur.fetchall()
+my_data_rows = my_dataframe_cur.fetchall()
 
    #Create action table header
-#-streamlit.header(':blue[Action/ Issue Register] :runner:')
+streamlit.header(':blue[Action/ Issue Register] :runner:')
 
    #Populate dataframe
-#-df = pandas.DataFrame(
-#-   my_data_rows,
-#-   columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
+df = pandas.DataFrame(
+   my_data_rows,
+   columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
 
 # CSS to inject contained in a string
-#-hide_dataframe_row_index = """
-#-            <style>
-#-            .row_heading.level0 {display:none}
-#-            .blank {display:none}
-#-            </style>
-#-            """
+hide_dataframe_row_index = """
+            <style>
+            .row_heading.level0 {display:none}
+            .blank {display:none}
+            </style>
+            """
 # Inject CSS with Markdown
-#-streamlit.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+streamlit.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
 
-#-streamlit.dataframe(df,width=1500,height=245)
+streamlit.dataframe(df,width=1500,height=245)
 
 # Sidebar ----------------------------------------------------------------------------------------------------------------
-   #create new action variables and objects in sidebar object
-def buildsidebar():
-   
-   with streamlit.sidebar:
-      streamlit.header(':lower_left_ballpoint_pen: :blue[Enter New Action]')
-      date_select1 = streamlit.date_input('Action date:')
-         #convert the date to the required string format
-      action_date = date_select1.strftime("%m/%d/%Y")
-      action = streamlit.text_input('Action details:','Enter details')
-      owner = streamlit.text_input('Action Owner:','Enter owner details')
-      date_select2 = streamlit.date_input('Action Due Date:')
-         #convert the date to the required string format
-      due_date = date_select2.strftime("%m/%d/%Y")
-      status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'))
+   #create new action variables and objects in sidebar object   
+with streamlit.sidebar:
+   streamlit.header(':lower_left_ballpoint_pen: :blue[Enter New Action]')
+   date_select1 = streamlit.date_input('Action date:')
+      #convert the date to the required string format
+   action_date = date_select1.strftime("%m/%d/%Y")
+   action = streamlit.text_input('Action details:','Enter details')
+   owner = streamlit.text_input('Action Owner:','Enter owner details')
+   date_select2 = streamlit.date_input('Action Due Date:')
+      #convert the date to the required string format
+   due_date = date_select2.strftime("%m/%d/%Y")
+   status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'))
 
-      #Insert new action record based on sliderbar objects
-   with streamlit.sidebar:   
-      if streamlit.button('Create new Action'):
-         back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
-         streamlit.success(back_from_function)
+   #Insert new action record based on sliderbar objects
+with streamlit.sidebar:   
+   if streamlit.button('Create new Action'):
+      back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
+      streamlit.success(back_from_function)
   
 # Row B -----------------------------------------------------------------------------------------------------------------
       #Create update action header
