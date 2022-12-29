@@ -25,6 +25,27 @@ def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status):
       my_cur.execute("UPDATE tbl_OperationalActionsRegister SET Action = '"+ ud_action +"', Owner = '"+ ud_owner +"', DueDate = '"+ ud_due_date +"', Status = '"+ ud_status +"' WHERE Action_ID = "+ str(select_id) +"")
       my_cnx.close()
    return str(select_id)
+
+   #create new action variables and objects in sidebar object
+def buildsidebar():
+   
+   with streamlit.sidebar:
+      streamlit.header(':lower_left_ballpoint_pen: :blue[Enter New Action]')
+      date_select1 = streamlit.date_input('Action date:')
+         #convert the date to the required string format
+      action_date = date_select1.strftime("%m/%d/%Y")
+      action = streamlit.text_input('Action details:','Enter details')
+      owner = streamlit.text_input('Action Owner:','Enter owner details')
+      date_select2 = streamlit.date_input('Action Due Date:')
+         #convert the date to the required string format
+      due_date = date_select2.strftime("%m/%d/%Y")
+      status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'))
+
+      #Insert new action record based on sliderbar objects
+   with streamlit.sidebar:   
+      if streamlit.button('Create new Action'):
+         back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
+         streamlit.success(back_from_function)
 # -----------------------------------------------------------------------------------------------------------------------
 
 
