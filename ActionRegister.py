@@ -86,9 +86,7 @@ def check_password():
         return True
 
 if check_password():
-    #streamlit.write("Here goes your normal Streamlit app...")
-      #Set page title
-
+   streamlit.write("Here goes your normal Streamlit app...")
     
     #buildsidebar()
    
