@@ -97,7 +97,9 @@ if check_password():
       # Inject CSS with Markdown
     streamlit.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
 
-    streamlit.dataframe(df,width=1500,height=245)   
+    streamlit.dataframe(df,width=1500,height=245)
+    
+    buildsidebar()
    
    
    
@@ -140,25 +142,26 @@ if check_password():
 
 # Sidebar ----------------------------------------------------------------------------------------------------------------
    #create new action variables and objects in sidebar object
-"""   
-with streamlit.sidebar:
-   streamlit.header(':lower_left_ballpoint_pen: :blue[Enter New Action]')
-   date_select1 = streamlit.date_input('Action date:')
-      #convert the date to the required string format
-   action_date = date_select1.strftime("%m/%d/%Y")
-   action = streamlit.text_input('Action details:','Enter details')
-   owner = streamlit.text_input('Action Owner:','Enter owner details')
-   date_select2 = streamlit.date_input('Action Due Date:')
-      #convert the date to the required string format
-   due_date = date_select2.strftime("%m/%d/%Y")
-   status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'))
+def buildsidebar():
+   
+   with streamlit.sidebar:
+      streamlit.header(':lower_left_ballpoint_pen: :blue[Enter New Action]')
+      date_select1 = streamlit.date_input('Action date:')
+         #convert the date to the required string format
+      action_date = date_select1.strftime("%m/%d/%Y")
+      action = streamlit.text_input('Action details:','Enter details')
+      owner = streamlit.text_input('Action Owner:','Enter owner details')
+      date_select2 = streamlit.date_input('Action Due Date:')
+         #convert the date to the required string format
+      due_date = date_select2.strftime("%m/%d/%Y")
+      status = streamlit.selectbox('Current Status:', ('New', 'In Progress', 'Delayed','Complete'))
 
-   #Insert new action record based on sliderbar objects
-with streamlit.sidebar:   
-   if streamlit.button('Create new Action'):
-      back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
-      streamlit.success(back_from_function)
-"""      
+      #Insert new action record based on sliderbar objects
+   with streamlit.sidebar:   
+      if streamlit.button('Create new Action'):
+         back_from_function = insert_row_snowflake(action_date, action, owner, due_date, status)
+         streamlit.success(back_from_function)
+  
 # Row B -----------------------------------------------------------------------------------------------------------------
       #Create update action header
 streamlit.subheader(':orange[Update existing Active Action - Select Action ID]')      
