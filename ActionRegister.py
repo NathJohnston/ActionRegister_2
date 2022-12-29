@@ -102,6 +102,7 @@ if check_password():
    
    
 #======================================================================================================================================================
+
 # Row A -----------------------------------------------------------------------------------------------------------------
    #Set page title
 #-streamlit.title('Actions and Issues Tracker')
@@ -139,6 +140,7 @@ if check_password():
 
 # Sidebar ----------------------------------------------------------------------------------------------------------------
    #create new action variables and objects in sidebar object
+"""   
 with streamlit.sidebar:
    streamlit.header(':lower_left_ballpoint_pen: :blue[Enter New Action]')
    date_select1 = streamlit.date_input('Action date:')
