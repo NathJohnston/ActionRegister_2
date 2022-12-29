@@ -1,4 +1,2 @@
 # requirements.txt
 snowflake-connector-python
-
-pip install streamlit-login-auth-ui
