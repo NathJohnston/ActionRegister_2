@@ -7,6 +7,7 @@ import snowflake.connector
 #use this for Control of Flow changes - error message handling
 from urllib.error import URLError
 
+streamlit.write('my password:', streamlit.secrets["password"]) 
 
 # -------------------------------------FUNCTIONS-------------------------------------------------------------------------
    #Use a Function and Button to Add new record
