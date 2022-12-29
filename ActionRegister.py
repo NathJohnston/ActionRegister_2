@@ -75,6 +75,9 @@ if check_password():
          #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
     my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
     my_cnx.close()
+      
+         #Populate my_data_rows variable with cursor results
+    my_data_rows = my_dataframe_cur.fetchall()
    
 #======================================================================================================================================================
 # Row A -----------------------------------------------------------------------------------------------------------------
@@ -90,7 +93,7 @@ if check_password():
 #-my_cnx.close()
 
    #Populate my_data_rows variable with cursor results
-my_data_rows = my_dataframe_cur.fetchall()
+#-my_data_rows = my_dataframe_cur.fetchall()
 
    #Create action table header
 streamlit.header(':blue[Action/ Issue Register] :runner:')
