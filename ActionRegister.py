@@ -1,5 +1,3 @@
-pip install streamlit-login-auth-ui
-
 # Import statements
 import streamlit
 import pandas
