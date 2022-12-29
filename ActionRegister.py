@@ -29,7 +29,6 @@ def update_selected_action(ud_action, ud_owner, ud_due_date, ud_status):
 def page_setup():
    #Set page title
    streamlit.title('Actions and Issues Tracker')
-   streamlit.write('my password:', streamlit.secrets["password"]) 
       #Connect to Snowflake and instantiate cursor object
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    my_dataframe_cur = my_cnx.cursor()
