@@ -79,6 +79,28 @@ if check_password():
          #Populate my_data_rows variable with cursor results
     my_data_rows = my_dataframe_cur.fetchall()
    
+      #Create action table header
+    streamlit.header(':blue[Action/ Issue Register] :runner:')
+
+      #Populate dataframe
+    df = pandas.DataFrame(      
+       my_data_rows,
+       columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
+
+      # CSS to inject contained in a string
+    hide_dataframe_row_index = """
+            <style>
+            .row_heading.level0 {display:none}
+            .blank {display:none}
+            </style>
+            """
+      # Inject CSS with Markdown
+    streamlit.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+
+    streamlit.dataframe(df,width=1500,height=245)   
+   
+   
+   
 #======================================================================================================================================================
 # Row A -----------------------------------------------------------------------------------------------------------------
    #Set page title
@@ -96,24 +118,24 @@ if check_password():
 #-my_data_rows = my_dataframe_cur.fetchall()
 
    #Create action table header
-streamlit.header(':blue[Action/ Issue Register] :runner:')
+#-streamlit.header(':blue[Action/ Issue Register] :runner:')
 
    #Populate dataframe
-df = pandas.DataFrame(
-   my_data_rows,
-   columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
+#-df = pandas.DataFrame(
+#-   my_data_rows,
+#-   columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
 
 # CSS to inject contained in a string
-hide_dataframe_row_index = """
-            <style>
-            .row_heading.level0 {display:none}
-            .blank {display:none}
-            </style>
-            """
+#-hide_dataframe_row_index = """
+#-            <style>
+#-            .row_heading.level0 {display:none}
+#-            .blank {display:none}
+#-            </style>
+#-            """
 # Inject CSS with Markdown
-streamlit.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+#-streamlit.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
 
-streamlit.dataframe(df,width=1500,height=245)
+#-streamlit.dataframe(df,width=1500,height=245)
 
 # Sidebar ----------------------------------------------------------------------------------------------------------------
    #create new action variables and objects in sidebar object
