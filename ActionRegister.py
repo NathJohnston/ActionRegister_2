@@ -34,7 +34,40 @@ streamlit.set_page_config(layout="wide")
 #with open('style.css') as f:
 #    streamlit.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
+#==============================================Secutity Test =====================================================================
 
+def check_password():
+    """Returns `True` if the user had the correct password."""
+
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if streamlit.session_state["password"] == streamlit.secrets["password"]:
+            streamlit.session_state["password_correct"] = True
+            del streamlit.session_state["password"]  # don't store password
+        else:
+            streamlit.session_state["password_correct"] = False
+
+    if "password_correct" not in st.session_state:
+        # First run, show input for password.
+        streamlit.text_input(
+            "Password", type="password", on_change=password_entered, key="password"
+        )
+        return False
+    elif not streamlit.session_state["password_correct"]:
+        # Password not correct, show input + error.
+        streamlit.text_input(
+            "Password", type="password", on_change=password_entered, key="password"
+        )
+        streamlit.error("😕 Password incorrect")
+        return False
+    else:
+        # Password correct.
+        return True
+
+if check_password():
+    streamlit.write("Here goes your normal Streamlit app...")
+    streamlit.button("Click me")
+#======================================================================================================================================================
 # Row A -----------------------------------------------------------------------------------------------------------------
    #Set page title
 streamlit.title('Actions and Issues Tracker')
