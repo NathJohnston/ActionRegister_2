@@ -47,7 +47,7 @@ def check_password():
         else:
             streamlit.session_state["password_correct"] = False
 
-    if "password_correct" not in st.session_state:
+    if "password_correct" not in streamlit.session_state:
         # First run, show input for password.
         streamlit.text_input(
             "Password", type="password", on_change=password_entered, key="password"
