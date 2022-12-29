@@ -7,8 +7,6 @@ import snowflake.connector
 #use this for Control of Flow changes - error message handling
 from urllib.error import URLError
 
-streamlit.write('my password:', streamlit.secrets["password"]) 
-
 # -------------------------------------FUNCTIONS-------------------------------------------------------------------------
    #Use a Function and Button to Add new record
    #Allow the end user to add a new record to the action list
@@ -40,7 +38,7 @@ streamlit.set_page_config(layout="wide")
 # Row A -----------------------------------------------------------------------------------------------------------------
    #Set page title
 streamlit.title('Actions and Issues Tracker')
-
+streamlit.write('my password:', streamlit.secrets["password"]) 
    #Connect to Snowflake and instantiate cursor object
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_dataframe_cur = my_cnx.cursor()
