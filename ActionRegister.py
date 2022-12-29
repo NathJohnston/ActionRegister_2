@@ -70,38 +70,38 @@ if check_password():
 #======================================================================================================================================================
 # Row A -----------------------------------------------------------------------------------------------------------------
    #Set page title
-streamlit.title('Actions and Issues Tracker')
-streamlit.write('my password:', streamlit.secrets["password"]) 
-   #Connect to Snowflake and instantiate cursor object
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_dataframe_cur = my_cnx.cursor()
+   streamlit.title('Actions and Issues Tracker')
+   streamlit.write('my password:', streamlit.secrets["password"]) 
+      #Connect to Snowflake and instantiate cursor object
+   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+   my_dataframe_cur = my_cnx.cursor()
 
-   #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
-my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
-my_cnx.close()
+      #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
+   my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
+   my_cnx.close()
 
-   #Populate my_data_rows variable with cursor results
-my_data_rows = my_dataframe_cur.fetchall()
+      #Populate my_data_rows variable with cursor results
+   my_data_rows = my_dataframe_cur.fetchall()
 
-   #Create action table header
-streamlit.header(':blue[Action/ Issue Register] :runner:')
+      #Create action table header
+   streamlit.header(':blue[Action/ Issue Register] :runner:')
 
-   #Populate dataframe
-df = pandas.DataFrame(
-   my_data_rows,
-   columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
+      #Populate dataframe
+   df = pandas.DataFrame(
+      my_data_rows,
+      columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
 
-# CSS to inject contained in a string
-hide_dataframe_row_index = """
-            <style>
-            .row_heading.level0 {display:none}
-            .blank {display:none}
-            </style>
-            """
-# Inject CSS with Markdown
-streamlit.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+   # CSS to inject contained in a string
+   hide_dataframe_row_index = """
+               <style>
+               .row_heading.level0 {display:none}
+               .blank {display:none}
+               </style>
+               """
+   # Inject CSS with Markdown
+   streamlit.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
 
-streamlit.dataframe(df,width=1500,height=245)
+   streamlit.dataframe(df,width=1500,height=245)
 
 # Sidebar ----------------------------------------------------------------------------------------------------------------
    #create new action variables and objects in sidebar object
