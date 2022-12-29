@@ -65,9 +65,16 @@ def check_password():
         return True
 
 if check_password():
-    streamlit.write("Here goes your normal Streamlit app...")
+    #streamlit.write("Here goes your normal Streamlit app...")
+      #Set page title
     streamlit.title('Actions and Issues Tracker')
     streamlit.write('my password:', streamlit.secrets["password"]) 
+      #Connect to Snowflake and instantiate cursor object
+    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+    my_dataframe_cur = my_cnx.cursor()
+         #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
+    my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
+    my_cnx.close()
    
 #======================================================================================================================================================
 # Row A -----------------------------------------------------------------------------------------------------------------
@@ -75,12 +82,12 @@ if check_password():
 #-streamlit.title('Actions and Issues Tracker')
 #-streamlit.write('my password:', streamlit.secrets["password"]) 
    #Connect to Snowflake and instantiate cursor object
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_dataframe_cur = my_cnx.cursor()
+#-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+#-my_dataframe_cur = my_cnx.cursor()
 
    #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
-my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
-my_cnx.close()
+#-my_dataframe_cur.execute("SELECT * FROM tbl_OperationalActionsRegister")
+#-my_cnx.close()
 
    #Populate my_data_rows variable with cursor results
 my_data_rows = my_dataframe_cur.fetchall()
