@@ -63,7 +63,7 @@ my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_dataframe_cur = my_cnx.cursor()
 
    #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
-my_dataframe_cur.execute("SELECT action_id, entrydate, action, owner, duedate, status FROM tbl_OperationalActionsRegister")
+my_dataframe_cur.execute("SELECT Action_id, EntryDate, Action, Owner, DueDate, Status FROM tbl_OperationalActionsRegister")
 my_cnx.close()
 
    #Populate my_data_rows variable with cursor results
