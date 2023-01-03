@@ -137,29 +137,29 @@ action_to_update_cur.execute("SELECT Action_id, EntryDate, Hub, Department, Acti
 my_cnx.close()
 updateAction = action_to_update_cur.fetchmany()
 
-# Row D -----------------------------------------------------------------------------------------------------------------
-for row in updateAction:
-   ud_action = streamlit.text_input('Action details:',f'{row[2]}')
-   
-# Row E -----------------------------------------------------------------------------------------------------------------   
-e1, e2, e3 = streamlit.columns((2,3,5))
-with e1:
+# Row D -----------------------------------------------------------------------------------------------------------------   
+d1, d2, d3 = streamlit.columns((2,3,5))
+with d1:
    for row in updateAction:
-      ud_hub = streamlit.text_input('Hub:',f'{row[3]}')
-with e2:
+      ud_hub = streamlit.text_input('Hub:',f'{row[2]}')
+with d2:
    for row in updateAction:
       ud_department = streamlit.text_input('Department:',f'{row[3]}')
+# Row E -----------------------------------------------------------------------------------------------------------------
+for row in updateAction:
+   ud_action = streamlit.text_input('Action details:',f'{row[4]}')
+   
 # Row F -----------------------------------------------------------------------------------------------------------------   
 f1, f2, f3 = streamlit.columns((4,3,3))
 with f1:
    for row in updateAction:   
-      ud_owner = streamlit.text_input('Owner:',f'{row[3]}')   
+      ud_owner = streamlit.text_input('Owner:',f'{row[5]}')   
 with f2:
    for row in updateAction:
-      ud_due_date = streamlit.text_input('Due Date:',f'{row[4]}')
+      ud_due_date = streamlit.text_input('Due Date:',f'{row[6]}')
 with f3:
    for row in updateAction:
-      ud_status = streamlit.text_input('Status:',f'{row[5]}') 
+      ud_status = streamlit.text_input('Status:',f'{row[7]}') 
       
       #txtstatus = str(f"{row[5]}")
       #mystring = ' '.join(map(str,f"{row[5]}"))
