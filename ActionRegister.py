@@ -63,7 +63,7 @@ my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_dataframe_cur = my_cnx.cursor()
 
    #Populate the cursor with the data in the tbl_OperationalActionsRegister table using execute and close cursor
-my_dataframe_cur.execute("SELECT Action_id, EntryDate, Action, Owner, DueDate, Status FROM tbl_OperationalActionsRegister")
+my_dataframe_cur.execute("SELECT Action_id, EntryDate, Hub, Action, Owner, DueDate, Status FROM tbl_OperationalActionsRegister")
 my_cnx.close()
 
    #Populate my_data_rows variable with cursor results
@@ -75,7 +75,7 @@ streamlit.header(':blue[Action/ Issue Register] :runner:')
    #Populate dataframe
 df = pandas.DataFrame(
    my_data_rows,
-   columns=("Action ID", "Entry Date", "Action", "Owner", "Due Date", "Status"))
+   columns=("Action ID", "Hub", "Entry Date", "Action", "Owner", "Due Date", "Status"))
 
 # CSS to inject contained in a string
 hide_dataframe_row_index = """
