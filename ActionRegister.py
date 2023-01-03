@@ -142,6 +142,7 @@ d1, d2, d3 = streamlit.columns((2,3,5))
 with d1:
    for row in updateAction:
       ud_hub = streamlit.text_input('Hub:',f'{row[2]}')
+      streamlit.text('Hub:',f'{row[2]}')
 with d2:
    for row in updateAction:
       ud_department = streamlit.text_input('Department:',f'{row[3]}')
