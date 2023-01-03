@@ -13,7 +13,7 @@ from urllib.error import URLError
 def insert_row_snowflake(action_date, action, owner, due_date, status):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    with my_cnx.cursor() as my_cur:
-      my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', '"+ due_date +"', '"+ status +"')")
+      my_cur.execute("INSERT INTO tbl_OperationalActionsRegister (EntryDate, Hub, Department, Action, Owner, DueDate, Status) VALUES ('"+ action_date +"', '"+ action +"', '"+ owner +"', '"+ due_date +"', '"+ status +"')")
       my_cnx.close()
       return "New action added " #+ Action
      
@@ -96,6 +96,8 @@ with streamlit.sidebar:
    date_select1 = streamlit.date_input('Action date:')
       #convert the date to the required string format
    action_date = date_select1.strftime("%m/%d/%Y")
+   hub = streamlit.selectbox('Hub:', ('Eliwana', 'Christmas Creek', 'Cloudbreak', 'Solomon'))
+   department = streamlit.selectbox('Action Department:', ('Drill and Blast', 'Mining', 'Mine Control', 'OPF', 'Planning', 'Rail', 'Survey'))
    action = streamlit.text_input('Action details:','Enter details')
    owner = streamlit.text_input('Action Owner:','Enter owner details')
    date_select2 = streamlit.date_input('Action Due Date:')
