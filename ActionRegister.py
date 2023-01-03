@@ -133,7 +133,7 @@ with b1:
    #Retrieve Action based on selected action ID
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 action_to_update_cur = my_cnx.cursor()
-action_to_update_cur.execute("SELECT * FROM tbl_OperationalActionsRegister WHERE Action_ID = "+ str(select_id) +"")
+action_to_update_cur.execute("SELECT Action_id, EntryDate, Hub, Department, Action, Owner, DueDate, Status FROM tbl_OperationalActionsRegister WHERE Action_ID = "+ str(select_id) +"")
 my_cnx.close()
 updateAction = action_to_update_cur.fetchmany()
 
@@ -142,14 +142,22 @@ for row in updateAction:
    ud_action = streamlit.text_input('Action details:',f'{row[2]}')
    
 # Row E -----------------------------------------------------------------------------------------------------------------   
-e1, e2, e3 = streamlit.columns((4,3,3))
+e1, e2, e3 = streamlit.columns((2,3,5))
 with e1:
-   for row in updateAction:   
-      ud_owner = streamlit.text_input('Owner:',f'{row[3]}')   
+   for row in updateAction:
+      ud_hub = streamlit.text_input('Hub:',f'{row[3]}')
 with e2:
    for row in updateAction:
+      ud_department = streamlit.text_input('Department:',f'{row[3]}')
+# Row F -----------------------------------------------------------------------------------------------------------------   
+f1, f2, f3 = streamlit.columns((4,3,3))
+with f1:
+   for row in updateAction:   
+      ud_owner = streamlit.text_input('Owner:',f'{row[3]}')   
+with f2:
+   for row in updateAction:
       ud_due_date = streamlit.text_input('Due Date:',f'{row[4]}')
-with e3:
+with f3:
    for row in updateAction:
       ud_status = streamlit.text_input('Status:',f'{row[5]}') 
       
