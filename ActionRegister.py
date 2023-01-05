@@ -87,7 +87,7 @@ hide_dataframe_row_index = """
 # Inject CSS with Markdown
 streamlit.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
 
-streamlit.dataframe(df,width=1500,height=245)
+streamlit.dataframe(df,width=2000,height=245)
 
 # Sidebar ----------------------------------------------------------------------------------------------------------------
    #create new action variables and objects in sidebar object   
