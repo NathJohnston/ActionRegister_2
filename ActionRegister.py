@@ -97,7 +97,7 @@ with streamlit.sidebar:
       #convert the date to the required string format
    action_date = date_select1.strftime("%m/%d/%Y")
    hub = streamlit.selectbox('Hub:', ('Select Hub', 'Eliwana', 'Christmas Creek', 'Cloudbreak', 'Solomon'))
-   department = streamlit.selectbox('Action Department:', ('Select Department', 'Drill and Blast', 'Mining', 'Mine Control', 'OPF', 'Planning', 'Rail', 'Survey'))
+   department = streamlit.selectbox('Action Department:', ('Select Department', 'Drill and Blast', 'Mining', 'Mine Control', 'Mining Systems', 'OPF', 'Planning', 'Rail', 'Survey'))
    action = streamlit.text_input('Action details:','Enter details')
    owner = streamlit.text_input('Action Owner:','Enter owner details')
    date_select2 = streamlit.date_input('Action Due Date:')
